@@ -4,14 +4,17 @@
 
 int main(int argc, char *argv[]) {
     char buffer[BUFFER_SIZE];
-    int bytes_read = 1;
+
+    int bytes_read;
     while (1) {
+        // Reading the input stream
         bytes_read = read(STDIN_FILENO, buffer, BUFFER_SIZE);
         if (bytes_read < 0) {
             perror("Error reading input stream");
             return 1;
         }
         if (bytes_read > 0) {
+            // Actually print the output!
             write(STDOUT_FILENO, buffer, bytes_read);
         } else {
             break; // EOF reached
